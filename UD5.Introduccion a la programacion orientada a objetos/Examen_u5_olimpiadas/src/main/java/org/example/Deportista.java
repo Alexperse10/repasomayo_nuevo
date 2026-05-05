@@ -10,9 +10,11 @@ public class Deportista {
     private Equipo equipo;
     private ArrayList<String> listamodalidades;
 
-    public Deportista(String nombre, LocalDate fecha_nacimiento){
+
+    public Deportista(String nombre,int dia, int mes, int año){
+
         this.nombre = nombre;
-        this.fecha_nacimiento= fecha_nacimiento;
+        this.fecha_nacimiento= LocalDate.of(año, mes, dia);
         this.medallas =0;
         this.equipo = new Equipo("");
         this.listamodalidades = new ArrayList<>();
@@ -78,7 +80,7 @@ public class Deportista {
                 "nombre='" + nombre + '\'' +
                 ", fecha_nacimiento=" + fecha_nacimiento +
                 ", medallas=" + medallas +
-                ", equipo=" + equipo +
+                ", equipo=" + equipo.getPais() +
                 ", listamodalidades=" + listamodalidades +
                 '}';
     }

@@ -14,12 +14,13 @@ public class Equipo {
 
     public void inscribirdeportistas (Deportista deportista) {
         listadeportista.add(deportista);
+        deportista.setEquipo(this);
     }
 
     public int medallastotales() {
         int totales=0;
         for (Deportista deportista : listadeportista){
-            totales = deportista.getMedallas();
+
             totales += deportista.getMedallas();
         }
         return totales;
@@ -71,7 +72,7 @@ public class Equipo {
         LocalDate deportistamasjoven = null;
         Deportista deportista_ = null;
         for (Deportista deportista : listadeportista) {
-            if (deportistamasjoven == null || deportista.getFecha_nacimiento().isAfter(deportistamasjoven)){
+            if (deportistamasjoven == null || deportista.getFecha_nacimiento().isAfter(deportistamasjoven)){ // el null actua como proteccion si no hay valor guarda y si hay valor comapra
                 deportistamasjoven=deportista.getFecha_nacimiento();
                 deportista_ = deportista;
             }
