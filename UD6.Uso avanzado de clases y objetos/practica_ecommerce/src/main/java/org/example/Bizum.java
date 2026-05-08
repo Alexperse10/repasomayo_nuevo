@@ -20,9 +20,8 @@ public void validarBizum() { // comprobar el formato del telefono y el pin intro
 
     if (!telefono.matches("\\d{9}") && pin != 6) {
         System.out.println("Los datos no son validos");
-    }else {
-        Tienda.realizarPago(this);
     }
+
 }
     @Override
     public void procesarPago(double importe) {

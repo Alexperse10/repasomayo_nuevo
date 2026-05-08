@@ -12,13 +12,15 @@ public class TarjetaCredito extends Metodopago{
 
     }
 
-    public void validartarjeta () {// compruebe que el numero de tarjeta introducido tenga longitud esperada
+    public boolean validartarjeta () {// compruebe que el numero de tarjeta introducido tenga longitud esperada
         System.out.println("Validando tarjeta....");
-        if (!nro_tarjeta.matches("[a-zA-Z0-9]{16}") && (!tipo.equalsIgnoreCase("visa") || !tipo.equalsIgnoreCase("mastercard") || !tipo.equalsIgnoreCase("maestro"))){
+        if (!nro_tarjeta.matches("[a-zA-Z0-9]{16}") || (!tipo.equalsIgnoreCase("visa") && !tipo.equalsIgnoreCase("mastercard") && !tipo.equalsIgnoreCase("maestro"))){
             System.out.println("Los datos de tu tarjeta no son correcto");
-        }else {
-            Tienda.realizarPago(this);
+
+            return false;
         }
+            return true;
+
     }
 
 
