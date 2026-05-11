@@ -1,23 +1,35 @@
 package org.example;
 
-public class CuentaBancaria {
+public class CuentaBancaria{
     private double saldo;
 
-    public CuentaBancaria () {
+    public CuentaBancaria ()  {
         this.saldo = 500;
     }
 
-    public void ingregardinero(double ingresar) {
+    public double ingregardinero(double ingresar) throws DepositoMaximoException{
         if (ingresar>3000){
-            
+                throw new DepositoMaximoException();
         }else {
-            setSaldo(ingresar);
+           double saldo_actual = saldo+ingresar;
+           setSaldo(saldo_actual);
         }
+        return getSaldo();
     }
 
-    public double retirardinero(double retirar) {
-    return 0;
+    public void retirardinero(double retirar) throws LimiteDiarioException, SaldoInsuficienteException {
+        if (retirar>600) {
+            throw new LimiteDiarioException();
+        }else if (retirar>getSaldo()){
+            throw new SaldoInsuficienteException();
+
+        } else {
+            double retirar_ = getSaldo()-retirar;
+            setSaldo(retirar_);
+        }
+
     }
+
 
     public void mostrarsaldo () {
         System.out.println("el saldo disponible es: "+getSaldo());
@@ -31,6 +43,8 @@ public class CuentaBancaria {
     public double getSaldo() {
         return saldo;
     }
+
+
 
     @Override
     public String toString() {
