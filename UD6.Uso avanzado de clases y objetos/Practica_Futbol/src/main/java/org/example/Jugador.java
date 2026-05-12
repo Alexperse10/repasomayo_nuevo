@@ -35,7 +35,8 @@ public class Jugador extends MutxamelFC implements AccionesDeportivas{
         return dorsal;
     }
 
-    public void setDorsal(int dorsal) {
+    public void setDorsal(int dorsal) throws MismoDorsalExcepcion{
+
         this.dorsal = dorsal;
     }
 
@@ -71,5 +72,14 @@ public class Jugador extends MutxamelFC implements AccionesDeportivas{
     @Override
     public void jugarPartido(String rival) {
         System.out.println("esta jugando un partido contra "+rival);
+    }
+
+    @Override
+    public String toString() {
+        return  " Nombre= "+getNombre()+
+                ", Edad= "+getEdad()+
+                ", categoria= " + categoria +
+                ", dorsal=" + dorsal +
+                ", posicion=" + posicion ;
     }
 }

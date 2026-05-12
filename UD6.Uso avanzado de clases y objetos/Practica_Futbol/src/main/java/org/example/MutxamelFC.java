@@ -27,9 +27,7 @@ public MutxamelFC(String nombre, int edad) {
 
     @Override
     public String toString() {
-        return "MutxamelFC{" +
-                "nombre='" + nombre + '\'' +
-                ", edad=" + edad +
-                '}';
+        return "nombre='" + nombre + '\'' +
+                ", edad=" + edad ;
     }
 }

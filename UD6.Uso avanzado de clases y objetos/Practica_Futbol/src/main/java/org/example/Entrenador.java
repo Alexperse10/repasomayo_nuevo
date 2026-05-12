@@ -4,7 +4,7 @@ public class Entrenador extends MutxamelFC implements AccionesDeportivas{
 
     private Equipos equipo;
     private String formacionpreferida;
-    public Entrenador(String nombre, int edad, Equipos equipo, String formacionpreferida) {
+    public Entrenador(String nombre, int edad, Equipos equipo, String formacionpreferida) throws FormacionPreferida {
         super(nombre, edad);
         setFormacionpreferida(formacionpreferida);
         this.equipo = equipo;
@@ -23,9 +23,9 @@ System.out.println("Entrenador del equipo "+equipo+" preparando entreno");
         this.equipo = equipo;
     }
 
-    public void setFormacionpreferida(String formacionpreferida) {
+    public void setFormacionpreferida(String formacionpreferida) throws FormacionPreferida {
         if (!formacionpreferida.matches("\\d+-\\d+-\\d+")){
-            System.out.println("formacion incorrecta");
+           throw new FormacionPreferida();
         }else {
             this.formacionpreferida = formacionpreferida;
         }

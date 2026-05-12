@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AppMutxamelCF {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FormacionPreferida, MismoDorsalExcepcion {
         Scanner sc = new Scanner(System.in);
         Jugador jugador1 = new Jugador("alex", 25, Equipos.SENIOR, Posiciones.DELANTERO, 10);
         Jugador jugador2 = new Jugador("manu", 30, Equipos.SENIOR, Posiciones.PORTERO, 1);
@@ -17,7 +17,7 @@ public class AppMutxamelCF {
 
 
         ArrayList<Jugador> listajugadores = new ArrayList<>();
-
+        ArrayList<Acompañante> listaacompañante = new ArrayList<>();
 
         System.out.println("=== APP MANTENIMIENTO DEL MUTXAMEL FC ====");
         System.out.println("[1] Mantenimiento de jugadores");
@@ -60,23 +60,117 @@ public class AppMutxamelCF {
                             System.out.println("introduce el dorsal");
                             int dorsal = sc.nextInt();
                             sc.nextLine();
-                            listajugadores.add(new Jugador(nombre,edad,equipo,posiciones,dorsal));
+                            try {
+                                for (Jugador jugador_ : listajugadores) {
+                                    if (jugador_.getDorsal() == dorsal) {
+                                        throw new MismoDorsalExcepcion(); // primero compruebo toda la lista y despues lo añado, porque si el primero que comprueba es diferente lo añado sin comprabar los demas
+                                    }
+
+                                }
+                                listajugadores.add(new Jugador(nombre, edad, equipo, posiciones, dorsal));
+
+                            } catch (MismoDorsalExcepcion excepcion) {
+                                System.out.println(excepcion.getMessage());
+                            }
+
 
                             break;
+
+
                         case '2':
 
 
                             System.out.println("De que jugador quieres hacer los cambios ");
-                            int contador =0;
+                            int contador = 0;
                             for (Jugador jugador_ : listajugadores) {
                                 contador++;
-                                System.out.println(contador+", "+jugador_);
+                                System.out.println(contador + ", " + jugador_);
+
                             }
+                            System.out.println("========================================");
+                            System.out.println("selecciona una opcion");
+                            int opcion_jugador = sc.nextInt();
+                            sc.nextLine();
+                            Jugador jugador_seleccionado = listajugadores.get(opcion_jugador-1);
+
+                            System.out.println("que quieres modificar? [nombre, edad, categoria, dorsal, posicion]");
+                            String opcion_tipo = sc.nextLine();
+
+
+                                if (opcion_tipo.equalsIgnoreCase("nombre")) {
+                                    System.out.println("Introduce el nuevo nombre");
+                                    String nombre_nuevo = sc.nextLine();
+                                    jugador_seleccionado.setNombre(nombre_nuevo);
+                                } else if (opcion_tipo.equalsIgnoreCase("edad")) {
+                                    System.out.println("introduce una nueva edad");
+                                    int edad_nueva = sc.nextInt();
+                                    sc.nextLine();
+                                    jugador_seleccionado.setEdad(edad_nueva);
+                                } else if (opcion_tipo.equalsIgnoreCase("categoria")) {
+                                    System.out.println("introduce categoria");
+                                    String categoria_nuevo = sc.nextLine();
+                                    jugador_seleccionado.setCategoria(Equipos.valueOf(categoria_nuevo));
+                                } else if (opcion_tipo.equalsIgnoreCase("dorsal")) {
+                                    try {
+                                        System.out.println("introduce dorsal");
+                                        int dorsal_nuevo = sc.nextInt();
+                                        sc.nextLine();
+                                        for (Jugador jugador_ : listajugadores) {
+                                            if (jugador_.getDorsal() == dorsal_nuevo) {
+                                                throw new MismoDorsalExcepcion();
+                                            }
+                                        }
+                                        jugador_seleccionado.setDorsal(dorsal_nuevo);
+
+                                    } catch (MismoDorsalExcepcion excepcion) {
+                                        System.out.println(excepcion.getMessage());
+                                    }
+
+                                } else if (opcion_tipo.equalsIgnoreCase("posicion")){
+                                    System.out.println("introduce una posicion nueva");
+                                    String nuevopos = sc.nextLine();
+                                    jugador_seleccionado.setPosicion(Posiciones.valueOf(nuevopos));
+                                }else {
+                                    System.out.println("la opcion es incorrecta");
+                                }
+
+
+                                break;
+
+
+                        case '3':
+                            System.out.println("Creo acompañantes de los jugadores");
+                            System.out.println("introduce nombre");
+                            String nombre_acompa = sc.nextLine();
+                            System.out.println("introduce la edad");
+                            int edad_acompañante = sc.nextInt();
+                            sc.nextLine();
+                            System.out.println("introduce el parentesco");
+                            String parentesco = sc.nextLine();
+                            System.out.println("selecciona al jugador");
+                            int contador_ = 0;
+                            for (Jugador jugador_ : listajugadores) {
+                                contador_++;
+                                System.out.println(contador_ + ", " + jugador_);
+
+                            }
+                            int indice_jugador = sc.nextInt();
+                            sc.nextLine();
+                            Jugador jugador = listajugadores.get(indice_jugador-1);
+                            Acompañante nuevo_acompañante = new Acompañante(nombre_acompa,edad_acompañante,parentesco, jugador);
+                                listaacompañante.add(nuevo_acompañante);
+
+                                break;
+
+                        case 'x':
+                            System.out.println("Saliendo del programa....");
                             break;
+                        default:
+                            System.out.println("opcion incorrecta");
+                            }
+                        
                     }
 
                 }
-
         }
     }
-}
