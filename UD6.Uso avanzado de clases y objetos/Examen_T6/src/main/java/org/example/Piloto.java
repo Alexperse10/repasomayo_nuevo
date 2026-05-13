@@ -29,6 +29,8 @@ public class Piloto extends Participante{
     }
 
     public void pagarInscripcion(Inscripcion inscripcion) {
+        System.out.println("Piloto "+getNombre()+ "pagando "+" por la inscripcion en categoria "+CategoriaDrift.PRO);
+        inscripcion.setPagado(true);
 
     }
 
