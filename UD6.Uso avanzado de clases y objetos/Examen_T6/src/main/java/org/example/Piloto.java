@@ -25,7 +25,7 @@ public class Piloto extends Participante{
     }
 
     public  Inscripcion inscribirse() {
-        return inscribirse();
+        return new Inscripcion(this);
     }
 
     public void pagarInscripcion(Inscripcion inscripcion) {

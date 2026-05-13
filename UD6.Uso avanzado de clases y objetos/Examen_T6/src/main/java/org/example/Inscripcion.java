@@ -1,18 +1,33 @@
 package org.example;
 
+import java.util.Scanner;
+
 public class Inscripcion {
     private Piloto piloto;
     private  CategoriaDrift categoria;
     private Boolean pagado;
-
-    public Inscripcion(Piloto piloto, CategoriaDrift categoria, Boolean pagado){
+Scanner sc = new Scanner(System.in);
+    public Inscripcion(Piloto piloto){
         this.piloto = piloto;
-        this.categoria = categoria;
-        this.pagado = pagado;
+        setCategoria();
+        pagado = false;
+        System.out.print("Piloto"+getPiloto().getNombre()+" realizando inscripcion");
+
+
     }
 
-    public void setCategoria(CategoriaDrift categoria) {
-        this.categoria = categoria;
+    public void setCategoria() {
+        while (true){
+            System.out.println("Elige una categoria");
+            try {
+                categoria = CategoriaDrift.valueOf(sc.nextLine());
+//                this.categoria = categoria; eso no hace falta ponerlo
+                break;
+            }catch (Exception e) {
+                System.out.println("Categoria incorrecta, vuelve a intentarlo");
+            }
+        }
+
     }
 
     public Boolean getPagado() {

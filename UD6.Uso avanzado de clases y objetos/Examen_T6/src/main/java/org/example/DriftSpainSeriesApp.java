@@ -14,10 +14,11 @@ public class DriftSpainSeriesApp {
         Scanner sc = new Scanner(System.in);
         System.out.println(" ===== BIENVENIDO A LA APP DEL DRIFT SPAIN SERIES DE VALENCIA ====");
         Piloto skoda = new Piloto("skoda");
-        Piloto mercedes = new Piloto("mercedes");
-        Piloto toyota = new Piloto("toyota");
+//        Piloto mercedes = new Piloto("mercedes");
+//        Piloto toyota = new Piloto("toyota");
 
         Inscripcion skoda_insc = skoda.inscribirse();
+        pilotosInscritos.add(skoda_insc);
 
     }
 }
