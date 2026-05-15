@@ -20,21 +20,79 @@ public class Ejercicio4_listacompra {
             System.out.println("6. Mostrar lista actual");
             System.out.println("x. salir");
             System.out.print(" Seleccione una opcion: ");
-            char opcion = sc.nextLine().charAt(0);
+            String opcion = sc.nextLine();
             switch (opcion) {
-                case '1':
+                case "1":
                     System.out.print("Producto a añadir");
                     String producto = sc.nextLine();
                     listacompra.offerLast(producto);
-                case '2':
-                    while (!listacompra.isEmpty()) {
-                        System.out.println("Producto a eliminar");
-                        String productoeliminar = sc.nextLine();
+
+                    break;
+                case "2":
+                    if (listacompra.isEmpty()) {
+                        System.out.println("Lista vacia no se puede eliminar nada");
+                    } else {
+
                         listacompra.pollFirst();
 
                     }
-                    if ()
+                    break;
 
+                case "3":
+
+
+                    if (listacompra.isEmpty()){
+                        System.out.println("La lista esta vacia");
+                    } else  {
+                        System.out.println("Eliminar producto");
+                        String nombre_eliminar = sc.nextLine();
+                        if (!listacompra.contains(nombre_eliminar)) {
+                            System.out.println("el nombre del producto no se encuenta en la lista");
+                        }else {
+                            listacompra.remove(nombre_eliminar);
+                            System.out.println("producto eliminado con exito");
+                        }
+
+
+
+                    }
+
+                    break;
+
+                case "4":
+                    System.out.println("el primer producto es: "+listacompra.peek());
+
+                    break;
+
+                case "5":
+                    System.out.println("Introduce el producto a buscar");
+                    String producto_busc = sc.nextLine();
+                    if (listacompra.isEmpty()){
+                        System.out.println("Lo siento la lista esta vacia");
+                    }else {
+                        if (listacompra.contains(producto_busc)){
+                            System.out.println("El producto esta en la lista ");
+                        }else {
+                            System.out.println("el producto no esta en la lista");                        }
+                    }
+
+                    break;
+                case "6":
+                    System.out.println("la lista es"+listacompra);
+
+                    break;
+
+                case "x":
+                    System.out.println("saliendo del programa");
+
+                    break;
+
+                default:
+                    System.out.println("La opcion es incorrecta");
+            }
+
+            if (opcion.equalsIgnoreCase( "x")){
+                break;
             }
         }
     }
